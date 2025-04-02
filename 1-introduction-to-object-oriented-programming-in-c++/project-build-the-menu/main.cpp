@@ -27,13 +27,10 @@ int main()
             std::cout << "Exchange stats" << std::endl;
         else if (userOption == 3)
             std::cout << "Place an ask" << std::endl;
-
         else if (userOption == 4)
             std::cout << "Place a bid" << std::endl;
-
         else if (userOption == 5)
             std::cout << "Print wallet" << std::endl;
-
         else if (userOption == 6)
             std::cout << "Continue" << std::endl;
     }
