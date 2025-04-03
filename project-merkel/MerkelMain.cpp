@@ -1,5 +1,6 @@
 #include "MerkelMain.h"
 #include "OrderBookEntry.h"
+#include "CSVReader.h"
 #include <iostream>
 #include <vector>
 
@@ -19,25 +20,7 @@ void MerkelMain::init()
 
 void MerkelMain::load_order_book()
 {
-    OrderBookEntry order1("2020/03/17 17:01:24.884492", "ETH/BTC", OrderBookType::bid, 0.0217, 11.58032904);
-    OrderBookEntry order2("2020/03/17 17:01:24.884492", "ETH/BTC", OrderBookType::bid, 0.02168639, 0.40030022);
-    OrderBookEntry order3("2020/03/17 17:01:24.884492", "ETH/BTC", OrderBookType::bid, 0.02167076, 33.82130391);
-    OrderBookEntry order4("2020/03/17 17:01:24.884492", "ETH/BTC", OrderBookType::bid, 0.02167075, 0.1777869);
-    OrderBookEntry order5("2020/03/17 17:01:24.884492", "ETH/BTC", OrderBookType::bid, 0.02164914, 31.97356142);
-    OrderBookEntry order6("2020/03/17 17:01:24.884492", "ETH/BTC", OrderBookType::ask, 0.02164903, 0.01766217);
-    OrderBookEntry order7("2020/03/17 17:01:24.884492", "ETH/BTC", OrderBookType::ask, 0.02164226, 0.14046593);
-    OrderBookEntry order8("2020/03/17 17:01:24.884492", "ETH/BTC", OrderBookType::ask, 0.02161593, 0.00636546);
-    OrderBookEntry order9("2020/03/17 17:01:24.884492", "ETH/BTC", OrderBookType::ask, 0.02160336, 508.56);
-
-    orders.push_back(order1);
-    orders.push_back(order2);
-    orders.push_back(order3);
-    orders.push_back(order4);
-    orders.push_back(order5);
-    orders.push_back(order6);
-    orders.push_back(order7);
-    orders.push_back(order8);
-    orders.push_back(order9);
+    orders = CSVReader::read_csv("data/20200317.csv");
 }
 
 void MerkelMain::print_menu()
