@@ -14,7 +14,9 @@ void MerkelMain::init()
     {
         print_menu();
         user_option = get_user_option();
+        std::cout << std::endl;
         process_option(user_option);
+        std::cout << std::endl;
     }
 }
 
@@ -26,7 +28,6 @@ void MerkelMain::load_order_book()
 void MerkelMain::print_menu()
 {
 
-    std::cout << std::endl;
     std::cout << "********" << std::endl;
     std::cout << "* MENU *" << std::endl;
     std::cout << "********" << std::endl;
