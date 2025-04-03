@@ -77,7 +77,7 @@ OrderBookEntry CSVReader::convert_to_order_book_entry(std::vector<std::string> t
     // Try to convert the order type
     try
     {
-        order_type = string_to_order_book_type(tokens[2]);
+        order_type = OrderBookEntry::string_to_order_book_type(tokens[2]);
     }
     catch (const std::invalid_argument &e)
     {

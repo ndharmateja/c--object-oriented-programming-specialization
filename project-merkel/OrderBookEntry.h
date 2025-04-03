@@ -20,6 +20,8 @@ public:
                    double price,
                    double amount);
 
+    static OrderBookType string_to_order_book_type(std::string order_type);
+
     std::string timestamp_;
     std::string product_;
     OrderBookType type_;

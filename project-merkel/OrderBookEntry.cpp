@@ -1,7 +1,7 @@
 #include <string>
 #include "OrderBookEntry.h"
 
-OrderBookType string_to_order_book_type(std::string order_type)
+OrderBookType OrderBookEntry::string_to_order_book_type(std::string order_type)
 {
     if (order_type == "bid")
         return OrderBookType::bid;
