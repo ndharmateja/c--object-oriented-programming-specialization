@@ -4,6 +4,9 @@ class MerkelMain
 {
 public:
     MerkelMain();
+    /**
+     * Initialize the application
+     */
     void init();
     void printMenu();
     int getUserOption();
