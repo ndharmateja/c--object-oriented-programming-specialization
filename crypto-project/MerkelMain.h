@@ -8,6 +8,8 @@ public:
      * Initialize the application
      */
     void init();
+
+private:
     void printMenu();
     int getUserOption();
     void printHelp();
