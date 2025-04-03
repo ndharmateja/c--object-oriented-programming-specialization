@@ -3,13 +3,13 @@
 #include <fstream>
 #include "CSVReader.h"
 
-std::vector<OrderBookEntry> CSVReader::readCSV(std::string filename)
+std::vector<OrderBookEntry> CSVReader::read_csv(std::string filename)
 {
     std::ifstream file{"data/20200317.csv"};
     if (!file.is_open())
         throw std::runtime_error("Could not open file");
 
-    std::vector<OrderBookEntry> orderBookEntries;
+    std::vector<OrderBookEntry> order_book_entries;
     std::string line;
     std::vector<std::string> tokens;
     while (std::getline(file, line))
@@ -19,8 +19,8 @@ std::vector<OrderBookEntry> CSVReader::readCSV(std::string filename)
 
         try
         {
-            OrderBookEntry entry = convertToOrderBookEntry(tokens);
-            orderBookEntries.push_back(entry);
+            OrderBookEntry entry = convert_to_order_book_entry(tokens);
+            order_book_entries.push_back(entry);
         }
         catch (const std::exception &e)
         {
@@ -28,7 +28,7 @@ std::vector<OrderBookEntry> CSVReader::readCSV(std::string filename)
         }
     }
     file.close();
-    return orderBookEntries;
+    return order_book_entries;
 }
 
 std::vector<std::string> CSVReader::tokenize(std::string csvLine, char separator)
@@ -51,7 +51,7 @@ std::vector<std::string> CSVReader::tokenize(std::string csvLine, char separator
     return tokens;
 }
 
-OrderBookEntry CSVReader::convertToOrderBookEntry(std::vector<std::string> tokens)
+OrderBookEntry CSVReader::convert_to_order_book_entry(std::vector<std::string> tokens)
 {
     // If the line does not have 5 tokens, skip it
     if (tokens.size() != 5)
@@ -76,7 +76,7 @@ OrderBookEntry CSVReader::convertToOrderBookEntry(std::vector<std::string> token
     // Try to convert the order type
     try
     {
-        order_type = stringToOrderBookType(tokens[2]);
+        order_type = string_to_order_book_type(tokens[2]);
     }
     catch (const std::invalid_argument &e)
     {

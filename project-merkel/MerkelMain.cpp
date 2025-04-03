@@ -7,17 +7,17 @@ MerkelMain::MerkelMain() {}
 
 void MerkelMain::init()
 {
-    loadOrderBook();
-    int userOption;
+    load_order_book();
+    int user_option;
     while (true)
     {
-        printMenu();
-        userOption = getUserOption();
-        processOption(userOption);
+        print_menu();
+        user_option = get_user_option();
+        process_option(user_option);
     }
 }
 
-void MerkelMain::loadOrderBook()
+void MerkelMain::load_order_book()
 {
     OrderBookEntry order1("2020/03/17 17:01:24.884492", "ETH/BTC", OrderBookType::bid, 0.0217, 11.58032904);
     OrderBookEntry order2("2020/03/17 17:01:24.884492", "ETH/BTC", OrderBookType::bid, 0.02168639, 0.40030022);
@@ -40,7 +40,7 @@ void MerkelMain::loadOrderBook()
     orders.push_back(order9);
 }
 
-void MerkelMain::printMenu()
+void MerkelMain::print_menu()
 {
 
     std::cout << std::endl;
@@ -55,7 +55,7 @@ void MerkelMain::printMenu()
     std::cout << "6 : Continue " << std::endl;
 }
 
-int MerkelMain::getUserOption()
+int MerkelMain::get_user_option()
 {
     int userOption;
     std::cout << "Choose option (1-6): ";
@@ -64,49 +64,49 @@ int MerkelMain::getUserOption()
     return userOption;
 }
 
-void MerkelMain::printHelp()
+void MerkelMain::print_help()
 {
     std::cout << "Help - your aim is to make money. Analyze the market and make "
                  "bids and offers."
               << std::endl;
 }
 
-void MerkelMain::printExchangeStats() { std::cout << "#Entries: " << orders.size() << std::endl; }
+void MerkelMain::print_exchange_stats() { std::cout << "#Entries: " << orders.size() << std::endl; }
 
-void MerkelMain::makeOffer()
+void MerkelMain::make_offer()
 {
     std::cout << "Make an offer - enter an amount." << std::endl;
 }
 
-void MerkelMain::makeBid() { std::cout << "Make a bid - enter an amount." << std::endl; }
+void MerkelMain::make_bid() { std::cout << "Make a bid - enter an amount." << std::endl; }
 
-void MerkelMain::printWallet() { std::cout << "Your wallet is empty." << std::endl; }
+void MerkelMain::print_wallet() { std::cout << "Your wallet is empty." << std::endl; }
 
-void MerkelMain::continueToNextTimeFrame()
+void MerkelMain::continue_to_next_frame()
 {
     std::cout << "Going to next time frame." << std::endl;
 }
 
-void MerkelMain::invalidOption()
+void MerkelMain::invalid_option()
 {
     std::cout << "Invalid option!" << std::endl;
 }
 
-void MerkelMain::processOption(int userOption)
+void MerkelMain::process_option(int userOption)
 {
     // Conditional Execution
     if (userOption < 1 || userOption > 6)
-        invalidOption();
+        invalid_option();
     else if (userOption == 1)
-        printHelp();
+        print_help();
     else if (userOption == 2)
-        printExchangeStats();
+        print_exchange_stats();
     else if (userOption == 3)
-        makeOffer();
+        make_offer();
     else if (userOption == 4)
-        makeBid();
+        make_bid();
     else if (userOption == 5)
-        printWallet();
+        print_wallet();
     else if (userOption == 6)
-        continueToNextTimeFrame();
+        continue_to_next_frame();
 }
