@@ -55,7 +55,22 @@ void MerkelMain::print_help()
               << std::endl;
 }
 
-void MerkelMain::print_exchange_stats() { std::cout << "#Entries: " << orders.size() << std::endl; }
+void MerkelMain::print_exchange_stats()
+{
+    std::cout << "Exchange stats" << std::endl;
+    std::cout << "#Entries: " << orders.size() << std::endl;
+    unsigned num_asks = 0;
+    unsigned num_bids = 0;
+    for (const OrderBookEntry &order : orders)
+    {
+        if (order.type_ == OrderBookType::ask)
+            num_asks++;
+        else
+            num_bids++;
+    }
+    std::cout << "#Asks: " << num_asks << std::endl;
+    std::cout << "#Bids: " << num_bids << std::endl;
+}
 
 void MerkelMain::make_offer()
 {
