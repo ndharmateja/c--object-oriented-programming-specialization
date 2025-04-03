@@ -1,5 +1,8 @@
 #pragma once
 
+#include <vector>
+#include "OrderBookEntry.h"
+
 class MerkelMain
 {
 public:
@@ -10,6 +13,9 @@ public:
     void init();
 
 private:
+    std::vector<OrderBookEntry> orders;
+
+    void loadOrderBook();
     void printMenu();
     int getUserOption();
     void printHelp();
