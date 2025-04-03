@@ -5,10 +5,11 @@ MerkelMain::MerkelMain() {}
 
 void MerkelMain::init()
 {
+    int userOption;
     while (true)
     {
         printMenu();
-        int userOption = getUserOption();
+        userOption = getUserOption();
         processOption(userOption);
     }
 }
