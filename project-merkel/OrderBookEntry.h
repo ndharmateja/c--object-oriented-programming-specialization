@@ -9,14 +9,7 @@ enum class OrderBookType
     bid
 };
 
-OrderBookType string_to_order_book_type(std::string order_type)
-{
-    if (order_type == "bid")
-        return OrderBookType::bid;
-    if (order_type == "ask")
-        return OrderBookType::ask;
-    throw std::invalid_argument("Invalid order type");
-}
+OrderBookType string_to_order_book_type(std::string order_type);
 
 class OrderBookEntry
 {
