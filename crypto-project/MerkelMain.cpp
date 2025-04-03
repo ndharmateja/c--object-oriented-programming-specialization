@@ -71,7 +71,7 @@ void MerkelMain::printHelp()
               << std::endl;
 }
 
-void MerkelMain::printExchangeStats() { std::cout << "Market looks good." << std::endl; }
+void MerkelMain::printExchangeStats() { std::cout << "#Entries: " << orders.size() << std::endl; }
 
 void MerkelMain::makeOffer()
 {
