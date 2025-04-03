@@ -2,6 +2,7 @@
 #include <vector>
 #include <fstream>
 #include "CSVReader.h"
+#include <stdexcept>
 
 std::vector<OrderBookEntry> CSVReader::read_csv(std::string filename)
 {
