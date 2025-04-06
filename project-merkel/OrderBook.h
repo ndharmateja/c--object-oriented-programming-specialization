@@ -27,6 +27,8 @@ public:
 
     static double get_high_price(std::vector<OrderBookEntry> &orders);
     static double get_low_price(std::vector<OrderBookEntry> &orders);
+    static double get_mean_price(std::vector<OrderBookEntry> &orders);
+    static double get_std_dev_price(std::vector<OrderBookEntry> &orders);
 
 private:
     std::vector<OrderBookEntry> orders_;

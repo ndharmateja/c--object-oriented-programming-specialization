@@ -67,3 +67,20 @@ double OrderBook::get_low_price(std::vector<OrderBookEntry> &orders)
             min = order.price_;
     return min;
 }
+
+double OrderBook::get_mean_price(std::vector<OrderBookEntry> &orders)
+{
+    double sum = 0.0;
+    for (const OrderBookEntry &order : orders)
+        sum += order.price_;
+    return sum / orders.size();
+}
+
+double OrderBook::get_std_dev_price(std::vector<OrderBookEntry> &orders)
+{
+    double mean = get_mean_price(orders);
+    double sum = 0.0;
+    for (const OrderBookEntry &order : orders)
+        sum += (order.price_ - mean) * (order.price_ - mean);
+    return sqrt(sum / orders.size());
+}
