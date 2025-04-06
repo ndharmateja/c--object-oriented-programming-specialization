@@ -58,8 +58,10 @@ void MerkelMain::print_exchange_stats()
         std::cout << "Product: " << p << std::endl;
         std::vector<OrderBookEntry> entries = order_book_.get_orders(OrderBookType::ask, p, current_time_);
         std::cout << "Asks seen: " << entries.size() << std::endl;
-        std::cout << "Max ask: " << OrderBook::get_high_price(entries) << std::endl;
-        std::cout << "Min ask: " << OrderBook::get_low_price(entries) << std::endl;
+        std::cout << "Max ask: " << OrderBook::get_high_price(entries)
+                  << " Min ask: " << OrderBook::get_low_price(entries)
+                  << " Average ask: " << OrderBook::get_mean_price(entries)
+                  << " Standard Deviation: " << OrderBook::get_std_dev_price(entries) << std::endl;
     }
 }
 
