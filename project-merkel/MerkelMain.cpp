@@ -8,7 +8,6 @@ MerkelMain::MerkelMain() {}
 
 void MerkelMain::init()
 {
-    load_order_book();
     int user_option;
     while (true)
     {
@@ -18,11 +17,6 @@ void MerkelMain::init()
         process_option(user_option);
         std::cout << std::endl;
     }
-}
-
-void MerkelMain::load_order_book()
-{
-    orders = CSVReader::read_csv("data/20200317.csv");
 }
 
 void MerkelMain::print_menu()
