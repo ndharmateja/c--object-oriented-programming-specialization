@@ -16,6 +16,7 @@ public:
     std::vector<OrderBookEntry> get_orders(OrderBookType type,
                                            std::string product,
                                            std::string timestamp);
+    std::string get_earliest_time();
 
     static double get_high_price(std::vector<OrderBookEntry> &orders);
     static double get_low_price(std::vector<OrderBookEntry> &orders);

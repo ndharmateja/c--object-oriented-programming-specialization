@@ -31,6 +31,13 @@ std::vector<OrderBookEntry> OrderBook::get_orders(OrderBookType type,
     return filtered_orders;
 }
 
+std::string OrderBook::get_earliest_time()
+{
+    // Because the orders are sorted in the ascending order of the timestamps
+    // we can return the first one
+    return orders_[0].timestamp_;
+}
+
 double OrderBook::get_high_price(std::vector<OrderBookEntry> &orders)
 {
     double max = orders[0].price_;
