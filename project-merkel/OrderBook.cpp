@@ -38,6 +38,18 @@ std::string OrderBook::get_earliest_time()
     return orders_[0].timestamp_;
 }
 
+std::string OrderBook::get_next_time(std::string timestamp)
+{
+    // Because the orders are sorted in the ascending order of the timestamps
+    // we can return the first timestamp greater than the given one
+    for (const OrderBookEntry &entry : orders_)
+        if (entry.timestamp_ > timestamp)
+            return entry.timestamp_;
+
+    // If there is no next timestamp, return the first one
+    return orders_[0].timestamp_;
+}
+
 double OrderBook::get_high_price(std::vector<OrderBookEntry> &orders)
 {
     double max = orders[0].price_;
