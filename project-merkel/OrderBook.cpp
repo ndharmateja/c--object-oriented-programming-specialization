@@ -21,6 +21,12 @@ std::vector<OrderBookEntry> OrderBook::get_orders(OrderBookType type,
                                                   std::string product,
                                                   std::string timestamp)
 {
-    std::vector<OrderBookEntry> orders;
-    return orders;
+    std::vector<OrderBookEntry> filtered_orders;
+
+    for (const OrderBookEntry &entry : orders_)
+        if (entry.type_ == type &&
+            entry.product_ == product &&
+             entry.timestamp_ <= timestamp)
+            filtered_orders.push_back(entry);
+    return filtered_orders;
 }
