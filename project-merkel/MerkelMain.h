@@ -14,6 +14,7 @@ public:
 
 private:
     OrderBook order_book_{"data/20200317.csv"};
+    std::string current_time_;
 
     void print_menu();
     int get_user_option();

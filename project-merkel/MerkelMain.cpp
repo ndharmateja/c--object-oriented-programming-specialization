@@ -8,6 +8,7 @@ MerkelMain::MerkelMain() {}
 
 void MerkelMain::init()
 {
+    current_time_ = order_book_.get_earliest_time();
     int user_option;
     while (true)
     {
@@ -25,6 +26,7 @@ void MerkelMain::print_menu()
     std::cout << "********" << std::endl;
     std::cout << "* MENU *" << std::endl;
     std::cout << "********" << std::endl;
+    std::cout << "Current time: " << current_time_ << std::endl;
     std::cout << "1 : Print help" << std::endl;
     std::cout << "2 : Print exchange stats" << std::endl;
     std::cout << "3 : Place an ask" << std::endl;
