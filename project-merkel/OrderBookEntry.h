@@ -9,8 +9,6 @@ enum class OrderBookType
     bid
 };
 
-OrderBookType string_to_order_book_type(std::string order_type);
-
 class OrderBookEntry
 {
 public:
