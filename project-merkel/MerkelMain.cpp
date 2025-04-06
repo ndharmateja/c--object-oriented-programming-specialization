@@ -53,11 +53,10 @@ void MerkelMain::print_help()
 
 void MerkelMain::print_exchange_stats()
 {
-    std::string current_time = "2020/03/17 17:01:24.884492";
     for (const std::string &p : order_book_.get_known_products())
     {
         std::cout << "Product: " << p << std::endl;
-        std::vector<OrderBookEntry> entries = order_book_.get_orders(OrderBookType::ask, p, current_time);
+        std::vector<OrderBookEntry> entries = order_book_.get_orders(OrderBookType::ask, p, current_time_);
         std::cout << "Asks seen: " << entries.size() << std::endl;
         std::cout << "Max ask: " << OrderBook::get_high_price(entries) << std::endl;
         std::cout << "Min ask: " << OrderBook::get_low_price(entries) << std::endl;
