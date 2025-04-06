@@ -6,7 +6,7 @@
 
 std::vector<OrderBookEntry> CSVReader::read_csv(std::string filename)
 {
-    std::ifstream file{"data/20200317.csv"};
+    std::ifstream file{filename};
     if (!file.is_open())
         throw std::runtime_error("Could not open file");
 
