@@ -32,7 +32,7 @@ void MerkelMain::print_menu()
     std::cout << "3 : Place an ask" << std::endl;
     std::cout << "4 : Place a bid" << std::endl;
     std::cout << "5 : Print wallet" << std::endl;
-    std::cout << "6 : Continue " << std::endl;
+    std::cout << "6 : Go to next time frame" << std::endl;
 }
 
 int MerkelMain::get_user_option()
@@ -76,6 +76,7 @@ void MerkelMain::print_wallet() { std::cout << "Your wallet is empty." << std::e
 void MerkelMain::continue_to_next_frame()
 {
     std::cout << "Going to next time frame." << std::endl;
+    current_time_ = order_book_.get_next_time(current_time_);
 }
 
 void MerkelMain::invalid_option()
