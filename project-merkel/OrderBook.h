@@ -17,6 +17,9 @@ public:
                                            std::string product,
                                            std::string timestamp);
 
+    static double get_high_price(std::vector<OrderBookEntry> &orders);
+    static double get_low_price(std::vector<OrderBookEntry> &orders);
+
 private:
     std::vector<OrderBookEntry> orders_;
 };

@@ -26,7 +26,25 @@ std::vector<OrderBookEntry> OrderBook::get_orders(OrderBookType type,
     for (const OrderBookEntry &entry : orders_)
         if (entry.type_ == type &&
             entry.product_ == product &&
-             entry.timestamp_ <= timestamp)
+            entry.timestamp_ <= timestamp)
             filtered_orders.push_back(entry);
     return filtered_orders;
+}
+
+double OrderBook::get_high_price(std::vector<OrderBookEntry> &orders)
+{
+    double max = orders[0].price_;
+    for (const OrderBookEntry &order : orders)
+        if (order.price_ > max)
+            max = order.price_;
+    return max;
+}
+
+double OrderBook::get_low_price(std::vector<OrderBookEntry> &orders)
+{
+    double min = orders[0].price_;
+    for (const OrderBookEntry &order : orders)
+        if (order.price_ < min)
+            min = order.price_;
+    return min;
 }
