@@ -80,9 +80,10 @@ void MerkelMain::print_exchange_stats()
 void MerkelMain::make_ask_or_bid(OrderBookType order_type)
 {
     // Print the prompt
-    std::string ask_or_bid = order_type == OrderBookType::ask ? "ask" : "bid";
-    std::cout << "Make an " << ask_or_bid
-              << ". Enter <product>,<price>,<amount> (Eg: ETH/BTC,100,1)." << std::endl;
+    std::cout << "Make an " << (order_type == OrderBookType::ask ? "ask" : "bid")
+              << ". Enter <product>,<price>,<amount> "
+                 "(Eg: ETH/BTC,100,1)."
+              << std::endl;
 
     // Get the user input
     std::string input;
