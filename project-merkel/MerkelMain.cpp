@@ -105,6 +105,9 @@ void MerkelMain::make_ask()
         OrderBookEntry entry = CSVReader::convert_to_order_book_entry(
             current_time_, product, OrderBookType::ask,
             price_string, amount_string);
+
+        // Add the entry to the order book
+        order_book_.insert_order(entry);
     }
     catch (const std::exception &e)
     {
