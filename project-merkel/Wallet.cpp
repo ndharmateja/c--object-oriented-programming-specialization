@@ -5,7 +5,6 @@ Wallet::Wallet()
 {
 }
 
-/** Inserts the currency */
 void Wallet::insert_currency(std::string currency, double amount)
 {
     if (amount < 0)
@@ -13,12 +12,10 @@ void Wallet::insert_currency(std::string currency, double amount)
     wallet_[currency] += amount;
 }
 
-/** Returns true if the wallet contains the currency */
 bool Wallet::does_contain_currency(std::string currency, double amount)
 {
     if (!wallet_.count(currency))
         return false;
-
     return wallet_[currency] >= amount;
 }
 
