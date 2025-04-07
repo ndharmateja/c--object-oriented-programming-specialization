@@ -5,7 +5,7 @@ CXX := g++
 CXXFLAGS := -std=c++17 -Wall -Wextra -I.
 
 # Source files
-SRCS := main.cpp MerkelMain.cpp OrderBook.cpp OrderBookEntry.cpp CSVReader.cpp
+SRCS := main.cpp MerkelMain.cpp OrderBook.cpp OrderBookEntry.cpp CSVReader.cpp Wallet.cpp
 OBJS := $(SRCS:.cpp=.o)
 
 # Output binary
