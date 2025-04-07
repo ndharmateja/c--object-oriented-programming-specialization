@@ -23,13 +23,13 @@ OrderBookEntry::OrderBookEntry(std::string timestamp,
       price_(price),
       amount_(amount) {}
 
-std::string OrderBookEntry::get_product_first_part()
+std::string OrderBookEntry::get_product_first_part() const
 {
     auto pos = product_.find("/");
     return product_.substr(0, pos);
 }
 
-std::string OrderBookEntry::get_product_second_part()
+std::string OrderBookEntry::get_product_second_part() const
 {
     auto pos = product_.find("/");
     return product_.substr(pos + 1);

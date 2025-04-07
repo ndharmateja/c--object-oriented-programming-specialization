@@ -19,8 +19,8 @@ public:
                    double price,
                    double amount);
 
-    std::string get_product_first_part();
-    std::string get_product_second_part();
+    std::string get_product_first_part() const;
+    std::string get_product_second_part() const;
 
     static OrderBookType string_to_order_book_type(std::string order_type);
     static bool compare_by_timestamp(const OrderBookEntry &a, const OrderBookEntry &b) { return a.timestamp_ < b.timestamp_; }
