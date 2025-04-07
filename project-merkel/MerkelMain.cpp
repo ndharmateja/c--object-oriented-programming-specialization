@@ -9,6 +9,7 @@ MerkelMain::MerkelMain() {}
 void MerkelMain::init()
 {
     current_time_ = order_book_.get_earliest_time();
+    wallet_.insert_currency("BTC", 10);
     int user_option;
     while (true)
     {
@@ -122,7 +123,7 @@ void MerkelMain::make_ask() { make_ask_or_bid(OrderBookType::ask); }
 
 void MerkelMain::make_bid() { make_ask_or_bid(OrderBookType::bid); }
 
-void MerkelMain::print_wallet() { std::cout << "Your wallet is empty." << std::endl; }
+void MerkelMain::print_wallet() { wallet_.print_wallet(); }
 
 void MerkelMain::continue_to_next_frame()
 {

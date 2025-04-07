@@ -2,6 +2,7 @@
 
 #include <vector>
 #include "OrderBook.h"
+#include "Wallet.h"
 
 class MerkelMain
 {
@@ -15,6 +16,7 @@ public:
 private:
     OrderBook order_book_{"data/20200317.csv"};
     std::string current_time_;
+    Wallet wallet_;
 
     void print_menu();
     int get_user_option();
