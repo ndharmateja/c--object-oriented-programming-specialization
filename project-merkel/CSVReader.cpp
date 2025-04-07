@@ -90,3 +90,25 @@ OrderBookEntry CSVReader::convert_to_order_book_entry(std::vector<std::string> t
 
     return OrderBookEntry{timestamp, product, order_type, price, amount};
 }
+
+OrderBookEntry CSVReader::convert_to_order_book_entry(
+    std::string timestamp,
+    std::string product,
+    OrderBookType type,
+    std::string price_string,
+    std::string amount_string)
+{
+    // Try to convert the tokens to floats
+    double price, amount;
+    try
+    {
+        price = std::stod(price_string);
+        amount = std::stod(amount_string);
+    }
+    catch (const std::invalid_argument &e)
+    {
+        throw std::invalid_argument("(CSVReader::convert_to_order_book_entry) Invalid floats! " + price_string + "," + amount_string);
+    }
+
+    return OrderBookEntry{timestamp, product, type, price, amount};
+}

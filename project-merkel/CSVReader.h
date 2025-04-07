@@ -13,8 +13,8 @@ public:
         std::string timestamp,
         std::string product,
         OrderBookType type,
-        std::string price,
-        std::string amount);
+        std::string price_string,
+        std::string amount_string);
 
 private:
     static OrderBookEntry convert_to_order_book_entry(std::vector<std::string> tokens);
