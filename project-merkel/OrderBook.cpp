@@ -18,9 +18,10 @@ std::vector<std::string> OrderBook::get_known_products()
 
     return products;
 }
-std::vector<OrderBookEntry> OrderBook::get_orders(OrderBookType type,
-                                                  std::string product,
-                                                  std::string timestamp)
+std::vector<OrderBookEntry> OrderBook::get_orders(
+    OrderBookType type,
+    std::string product,
+    std::string timestamp)
 {
     std::vector<OrderBookEntry> filtered_orders;
 

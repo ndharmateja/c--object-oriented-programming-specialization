@@ -110,8 +110,16 @@ void MerkelMain::make_ask_or_bid(OrderBookType order_type)
             current_time_, product, order_type,
             price_string, amount_string);
 
-        // Add the entry to the order book
-        order_book_.insert_order(entry);
+        if (wallet_.can_fulfill_order(entry))
+        {
+            std::cout << "Wallet has sufficient funds." << std::endl;
+            // Add the entry to the order book
+            order_book_.insert_order(entry);
+        }
+        else
+        {
+            std::cout << "Wallet does not have sufficient funds." << std::endl;
+        }
     }
     catch (const std::exception &e)
     {
