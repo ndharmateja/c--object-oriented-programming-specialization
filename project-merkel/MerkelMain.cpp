@@ -123,7 +123,7 @@ void MerkelMain::make_ask() { make_ask_or_bid(OrderBookType::ask); }
 
 void MerkelMain::make_bid() { make_ask_or_bid(OrderBookType::bid); }
 
-void MerkelMain::print_wallet() { wallet_.print_wallet(); }
+void MerkelMain::print_wallet() { std::cout << wallet_ << std::endl; }
 
 void MerkelMain::continue_to_next_frame()
 {
