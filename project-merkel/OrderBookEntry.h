@@ -17,7 +17,8 @@ public:
                    std::string product,
                    OrderBookType type,
                    double price,
-                   double amount);
+                   double amount,
+                   std::string username = "dataset");
 
     std::string get_product_first_part() const;
     std::string get_product_second_part() const;
@@ -32,4 +33,5 @@ public:
     OrderBookType type_;
     double price_;
     double amount_;
+    std::string username_;
 };

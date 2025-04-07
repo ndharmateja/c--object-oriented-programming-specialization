@@ -16,12 +16,14 @@ OrderBookEntry::OrderBookEntry(std::string timestamp,
                                std::string product,
                                OrderBookType type,
                                double price,
-                               double amount)
+                               double amount,
+                               std::string username)
     : timestamp_(timestamp),
       product_(product),
       type_(type),
       price_(price),
-      amount_(amount) {}
+      amount_(amount),
+      username_(username) {}
 
 std::string OrderBookEntry::get_product_first_part() const
 {
