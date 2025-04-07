@@ -65,7 +65,7 @@ void MerkelMain::print_exchange_stats()
     }
 }
 
-void MerkelMain::make_offer()
+void MerkelMain::make_ask()
 {
     std::cout << "Make an offer - enter an amount." << std::endl;
 }
@@ -95,7 +95,7 @@ void MerkelMain::process_option(int userOption)
     else if (userOption == 2)
         print_exchange_stats();
     else if (userOption == 3)
-        make_offer();
+        make_ask();
     else if (userOption == 4)
         make_bid();
     else if (userOption == 5)

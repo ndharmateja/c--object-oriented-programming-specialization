@@ -20,7 +20,7 @@ private:
     int get_user_option();
     void print_help();
     void print_exchange_stats();
-    void make_offer();
+    void make_ask();
     void make_bid();
     void print_wallet();
     void continue_to_next_frame();
