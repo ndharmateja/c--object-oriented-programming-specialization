@@ -41,3 +41,9 @@ std::string Wallet::to_string() const
         s += pair.first + ": " + std::to_string(pair.second) + "\n";
     return s;
 }
+
+std::ostream &operator<<(std::ostream &os, const Wallet &wallet)
+{
+    os << wallet.to_string();
+    return os;
+}

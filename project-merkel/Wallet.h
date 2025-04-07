@@ -21,3 +21,5 @@ public:
 private:
     std::map<std::string, double> wallet_;
 };
+
+std::ostream &operator<<(std::ostream &os, const Wallet &wallet);
