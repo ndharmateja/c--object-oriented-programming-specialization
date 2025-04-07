@@ -7,6 +7,8 @@ OrderBookType OrderBookEntry::string_to_order_book_type(std::string order_type)
         return OrderBookType::bid;
     if (order_type == "ask")
         return OrderBookType::ask;
+    if (order_type == "sale")
+        return OrderBookType::sale;
     throw std::invalid_argument("Invalid order type");
 }
 
