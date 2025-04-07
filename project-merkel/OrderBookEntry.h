@@ -21,6 +21,8 @@ public:
 
     static OrderBookType string_to_order_book_type(std::string order_type);
     static bool compare_by_timestamp(const OrderBookEntry &a, const OrderBookEntry &b) { return a.timestamp_ < b.timestamp_; }
+    static bool compare_by_price_asc(const OrderBookEntry &a, const OrderBookEntry &b) { return a.price_ < b.price_; }
+    static bool compare_by_price_desc(const OrderBookEntry &a, const OrderBookEntry &b) { return a.price_ > b.price_; }
 
     std::string timestamp_;
     std::string product_;
