@@ -57,6 +57,90 @@ void OrderBook::insert_order(OrderBookEntry &order)
     std::sort(orders_.begin(), orders_.end(), OrderBookEntry::compare_by_timestamp);
 }
 
+std::vector<OrderBookEntry> OrderBook::match_asks_to_bids(std::string product, std::string timestamp)
+{
+
+    // asks = orderbook.asks in this timeframe
+    // bids = orderbook.bids in this timeframe
+    // sales = []
+    std::vector<OrderBookEntry> asks = get_orders(OrderBookType::ask, product, timestamp);
+    std::vector<OrderBookEntry> bids = get_orders(OrderBookType::bid, product, timestamp);
+    std::vector<OrderBookEntry> sales;
+
+    // sort asks lowest first
+    // sort bids highest first
+    std::sort(asks.begin(), asks.end(), OrderBookEntry::compare_by_price_asc);
+    std::sort(bids.begin(), bids.end(), OrderBookEntry::compare_by_price_desc);
+
+    // for ask in asks:
+    for (OrderBookEntry &ask : asks)
+    {
+        // for bid in bids:
+        for (OrderBookEntry &bid : bids)
+        {
+            // if bid.price >= ask.price # we have a match
+            // sale = new orderbookentry()
+            // sale.price = ask.price
+            if (bid.price_ >= ask.price_)
+            {
+                OrderBookEntry sale{timestamp, product, OrderBookType::sale, ask.price_, 0};
+
+                // if bid.amount == ask.amount: # bid completely clears ask
+                // sale.amount = ask.amount
+                // sales.append(sale)
+                // bid.amount = 0 # make sure the bid is not processed again
+                // # can do no more with this ask
+                // # go onto the next ask
+                // break
+                if (bid.amount_ == ask.amount_)
+                {
+                    sale.amount_ = ask.amount_;
+                    sales.push_back(sale);
+                    bid.amount_ = 0;
+                    break;
+                }
+
+                // if bid.amount > ask.amount: # ask is completely gone slice the bid
+                // sale.amount = ask.amount
+                // sales.append(sale)
+                // # we adjust the bid in place
+                // # so it can be used to process the next ask
+                // bid.amount = bid.amount - ask.amount
+                // # ask is completely gone, so go to next ask
+                // break
+                if (bid.amount_ > ask.amount_)
+                {
+                    sale.amount_ = ask.amount_;
+                    sales.push_back(sale);
+                    bid.amount_ = bid.amount_ - ask.amount_;
+                    break;
+                }
+
+                // if bid.amount < ask.amount # bid is completely gone, slice the ask
+                // sale.amount = bid.amount
+                // sales.append(sale)
+                // # update the ask
+                // # and allow further bids to process the remaining amount
+                // ask.amount = ask.amount - bid.amount
+                // bid.amount = 0 # make sure the bid is not processed again
+                // # some ask remains so go to the next bid
+                // continue
+                if (bid.amount_ < ask.amount_)
+                {
+                    sale.amount_ = bid.amount_;
+                    sales.push_back(sale);
+                    ask.amount_ = ask.amount_ - bid.amount_;
+                    bid.amount_ = 0;
+                    continue;
+                }
+            }
+        }
+    }
+
+    // return sales
+    return sales;
+}
+
 double OrderBook::get_high_price(std::vector<OrderBookEntry> &orders)
 {
     double max = orders[0].price_;
