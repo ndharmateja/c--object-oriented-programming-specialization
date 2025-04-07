@@ -77,10 +77,12 @@ void MerkelMain::print_exchange_stats()
     }
 }
 
-void MerkelMain::make_ask()
+void MerkelMain::make_ask_or_bid(OrderBookType order_type)
 {
     // Print the prompt
-    std::cout << "Make an ask. Enter <product>,<price>,<amount> (Eg: ETH/BTC,100,1)." << std::endl;
+    std::string ask_or_bid = order_type == OrderBookType::ask ? "ask" : "bid";
+    std::cout << "Make an " << ask_or_bid
+              << ". Enter <product>,<price>,<amount> (Eg: ETH/BTC,100,1)." << std::endl;
 
     // Get the user input
     std::string input;
@@ -103,7 +105,7 @@ void MerkelMain::make_ask()
     try
     {
         OrderBookEntry entry = CSVReader::convert_to_order_book_entry(
-            current_time_, product, OrderBookType::ask,
+            current_time_, product, order_type,
             price_string, amount_string);
 
         // Add the entry to the order book
@@ -115,7 +117,9 @@ void MerkelMain::make_ask()
     }
 }
 
-void MerkelMain::make_bid() { std::cout << "Make a bid - enter an amount." << std::endl; }
+void MerkelMain::make_ask() { make_ask_or_bid(OrderBookType::ask); }
+
+void MerkelMain::make_bid() { make_ask_or_bid(OrderBookType::bid); }
 
 void MerkelMain::print_wallet() { std::cout << "Your wallet is empty." << std::endl; }
 

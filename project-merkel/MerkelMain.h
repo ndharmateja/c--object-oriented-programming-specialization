@@ -20,6 +20,7 @@ private:
     int get_user_option();
     void print_help();
     void print_exchange_stats();
+    void make_ask_or_bid(OrderBookType order_type);
     void make_ask();
     void make_bid();
     void print_wallet();
