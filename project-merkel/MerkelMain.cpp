@@ -67,7 +67,20 @@ void MerkelMain::print_exchange_stats()
 
 void MerkelMain::make_ask()
 {
-    std::cout << "Make an offer - enter an amount." << std::endl;
+    // Print the prompt
+    std::cout << "Make an ask. Enter <product>,<price>,<amount> (Eg: ETH/BTC,100,1)." << std::endl;
+
+    // Ignore the new line from the user input option
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+    // Get the user input
+    std::string input;
+    std::getline(std::cin, input);
+
+    // Tokenize the input
+    std::vector<std::string> tokens = CSVReader::tokenize(input, ',');
+    OrderBookEntry entry(current_time_, tokens[0], OrderBookType::ask, std::stod(tokens[1]), std::stod(tokens[2]));
+    // order_book_.add_order(OrderBookType::ask, tokens[0], std::stod(tokens[1]), std::stod(tokens[2]));
 }
 
 void MerkelMain::make_bid() { std::cout << "Make a bid - enter an amount." << std::endl; }
