@@ -126,7 +126,17 @@ void MerkelMain::print_wallet() { std::cout << "Your wallet is empty." << std::e
 
 void MerkelMain::continue_to_next_frame()
 {
-    std::cout << "Going to next time frame." << std::endl;
+    std::cout << "Going to next time frame. " << std::endl;
+    for (std::string &p : order_book_.get_known_products())
+    {
+        std::cout << "matching " << p << std::endl;
+        std::vector<OrderBookEntry> sales = order_book_.match_asks_to_bids(p, current_time_);
+        std::cout << "Sales: " << sales.size() << std::endl;
+        for (OrderBookEntry &sale : sales)
+        {
+            std::cout << "Sale price: " << sale.price_ << " amount " << sale.amount_ << std::endl;
+        }
+    }
     current_time_ = order_book_.get_next_time(current_time_);
 }
 
