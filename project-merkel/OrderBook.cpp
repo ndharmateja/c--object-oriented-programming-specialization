@@ -1,5 +1,6 @@
 #include "OrderBook.h"
 #include <set>
+#include <algorithm>
 
 OrderBook::OrderBook(std::string filename)
 {
@@ -48,6 +49,12 @@ std::string OrderBook::get_next_time(std::string timestamp)
 
     // If there is no next timestamp, return the first one
     return orders_[0].timestamp_;
+}
+
+void OrderBook::insert_order(OrderBookEntry &order)
+{
+    orders_.push_back(order);
+    std::sort(orders_.begin(), orders_.end(), OrderBookEntry::compare_by_timestamp);
 }
 
 double OrderBook::get_high_price(std::vector<OrderBookEntry> &orders)

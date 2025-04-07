@@ -25,6 +25,9 @@ public:
      */
     std::string get_next_time(std::string timestamp);
 
+    /** Add an order */
+    void insert_order(OrderBookEntry &order);
+
     static double get_high_price(std::vector<OrderBookEntry> &orders);
     static double get_low_price(std::vector<OrderBookEntry> &orders);
     /** Return the mean price of the orders */
