@@ -15,7 +15,7 @@ public:
     bool remove_currency(std::string currency, double amount);
 
     /** Returns true if the wallet contains the currency */
-    bool does_contain_currency(std::string currency, double amount);
+    bool contains_currency(std::string currency, double amount);
     void print_wallet();
 
 private:

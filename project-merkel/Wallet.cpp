@@ -19,7 +19,7 @@ bool Wallet::remove_currency(std::string currency, double amount)
         throw std::invalid_argument("Amount must be positive");
 
     // Check if the wallet contains the currency
-    if (!does_contain_currency(currency, amount))
+    if (!contains_currency(currency, amount))
         return false;
 
     // Decrease the amount
@@ -27,7 +27,7 @@ bool Wallet::remove_currency(std::string currency, double amount)
     return true;
 }
 
-bool Wallet::does_contain_currency(std::string currency, double amount)
+bool Wallet::contains_currency(std::string currency, double amount)
 {
     if (!wallet_.count(currency))
         return false;
