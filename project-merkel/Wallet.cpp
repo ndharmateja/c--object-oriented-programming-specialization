@@ -34,6 +34,15 @@ bool Wallet::contains_currency(std::string currency, double amount) const
     return wallet_.at(currency) >= amount;
 }
 
+bool Wallet::can_fulfill_order(const OrderBookEntry &order) const
+{
+    if (order.type_ == OrderBookType::ask)
+        return contains_currency(order.get_product_first_part(), order.amount_);
+    if (order.type_ == OrderBookType::bid)
+        return contains_currency(order.get_product_second_part(), order.amount_ * order.price_);
+    throw std::invalid_argument("Invalid order type");
+}
+
 std::string Wallet::to_string() const
 {
     std::string s = "Wallet contents: \n";
