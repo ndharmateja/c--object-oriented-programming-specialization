@@ -37,9 +37,21 @@ void MerkelMain::print_menu()
 
 int MerkelMain::get_user_option()
 {
-    int userOption;
+    int userOption = 0;
     std::cout << "Choose option (1-6): ";
-    std::cin >> userOption;
+
+    // Use getline to get user input
+    std::string line;
+    std::getline(std::cin, line);
+
+    // Convert user input to integer
+    try
+    {
+        userOption = std::stoi(line);
+    }
+    catch (const std::invalid_argument &e)
+    {
+    }
 
     return userOption;
 }
@@ -70,17 +82,34 @@ void MerkelMain::make_ask()
     // Print the prompt
     std::cout << "Make an ask. Enter <product>,<price>,<amount> (Eg: ETH/BTC,100,1)." << std::endl;
 
-    // Ignore the new line from the user input option
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-
     // Get the user input
     std::string input;
     std::getline(std::cin, input);
 
     // Tokenize the input
     std::vector<std::string> tokens = CSVReader::tokenize(input, ',');
-    OrderBookEntry entry(current_time_, tokens[0], OrderBookType::ask, std::stod(tokens[1]), std::stod(tokens[2]));
-    // order_book_.add_order(OrderBookType::ask, tokens[0], std::stod(tokens[1]), std::stod(tokens[2]));
+
+    // Check the number of tokens
+    if (tokens.size() != 3)
+    {
+        std::cout << "Invalid number of tokens." << std::endl;
+        return;
+    }
+
+    // Convert the tokens to an order book entry
+    std::string product = tokens[0];
+    std::string price_string = tokens[1];
+    std::string amount_string = tokens[2];
+    try
+    {
+        OrderBookEntry entry = CSVReader::convert_to_order_book_entry(
+            current_time_, product, OrderBookType::ask,
+            price_string, amount_string);
+    }
+    catch (const std::exception &e)
+    {
+        std::cerr << e.what() << std::endl;
+    }
 }
 
 void MerkelMain::make_bid() { std::cout << "Make a bid - enter an amount." << std::endl; }
