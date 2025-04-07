@@ -109,6 +109,7 @@ void MerkelMain::make_ask_or_bid(OrderBookType order_type)
         OrderBookEntry entry = CSVReader::convert_to_order_book_entry(
             current_time_, product, order_type,
             price_string, amount_string);
+        entry.username_ = "simuser";
 
         if (wallet_.can_fulfill_order(entry))
         {
