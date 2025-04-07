@@ -28,6 +28,9 @@ public:
     /** Add an order */
     void insert_order(OrderBookEntry &order);
 
+    /** Match asks and bids  */
+    std::vector<OrderBookEntry> match_asks_to_bids(std::string product, std::string timestamp);
+
     static double get_high_price(std::vector<OrderBookEntry> &orders);
     static double get_low_price(std::vector<OrderBookEntry> &orders);
     /** Return the mean price of the orders */
