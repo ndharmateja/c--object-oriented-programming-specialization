@@ -27,16 +27,17 @@ bool Wallet::remove_currency(std::string currency, double amount)
     return true;
 }
 
-bool Wallet::contains_currency(std::string currency, double amount)
+bool Wallet::contains_currency(std::string currency, double amount) const
 {
     if (!wallet_.count(currency))
         return false;
-    return wallet_[currency] >= amount;
+    return wallet_.at(currency) >= amount;
 }
 
-void Wallet::print_wallet()
+std::string Wallet::to_string() const
 {
-    std::cout << "Wallet contents: " << std::endl;
+    std::string s = "Wallet contents: \n";
     for (const auto &pair : wallet_)
-        std::cout << pair.first << ": " << pair.second << std::endl;
+        s += pair.first + ": " + std::to_string(pair.second) + "\n";
+    return s;
 }
