@@ -8,6 +8,8 @@ Wallet::Wallet()
 /** Inserts the currency */
 void Wallet::insert_currency(std::string currency, double amount)
 {
+    if (amount < 0)
+        throw std::invalid_argument("Amount must be positive");
     wallet_[currency] += amount;
 }
 
