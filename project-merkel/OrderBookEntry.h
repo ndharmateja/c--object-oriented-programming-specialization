@@ -7,7 +7,8 @@ enum class OrderBookType
 {
     ask,
     bid,
-    sale
+    asksale,
+    bidsale,
 };
 
 class OrderBookEntry
