@@ -84,7 +84,18 @@ std::vector<OrderBookEntry> OrderBook::match_asks_to_bids(std::string product, s
             // sale.price = ask.price
             if (bid.price_ >= ask.price_)
             {
-                OrderBookEntry sale{timestamp, product, OrderBookType::sale, ask.price_, 0};
+                // Defaults to ask sale and datauser
+                OrderBookEntry sale{timestamp, product, OrderBookType::asksale, ask.price_, 0};
+                if (bid.username_ == "simuser")
+                {
+                    sale.username_ = "simuser";
+                    sale.type_ = OrderBookType::bidsale;
+                }
+                if (ask.username_ == "simuser")
+                {
+                    sale.username_ = "simuser";
+                    sale.type_ = OrderBookType::asksale;
+                }
 
                 // if bid.amount == ask.amount: # bid completely clears ask
                 // sale.amount = ask.amount
@@ -126,7 +137,7 @@ std::vector<OrderBookEntry> OrderBook::match_asks_to_bids(std::string product, s
                 // bid.amount = 0 # make sure the bid is not processed again
                 // # some ask remains so go to the next bid
                 // continue
-                if (bid.amount_ < ask.amount_)
+                if (bid.amount_ > 0 && bid.amount_ < ask.amount_)
                 {
                     sale.amount_ = bid.amount_;
                     sales.push_back(sale);
