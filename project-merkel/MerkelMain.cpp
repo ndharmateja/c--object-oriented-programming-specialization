@@ -145,6 +145,10 @@ void MerkelMain::continue_to_next_frame()
         for (OrderBookEntry &sale : sales)
         {
             std::cout << "Sale price: " << sale.price_ << " amount " << sale.amount_ << std::endl;
+
+            // Update wallet if it is simuser
+            if (sale.username_ == "simuser")
+                wallet_.process_sale(sale);
         }
     }
     current_time_ = order_book_.get_next_time(current_time_);
