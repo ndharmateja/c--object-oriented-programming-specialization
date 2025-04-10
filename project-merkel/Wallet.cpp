@@ -43,6 +43,32 @@ bool Wallet::can_fulfill_order(const OrderBookEntry &order) const
     throw std::invalid_argument("Invalid order type");
 }
 
+void Wallet::process_sale(const OrderBookEntry &sale)
+{
+    if (sale.type_ == OrderBookType::asksale)
+    {
+        double outgoing = sale.amount_;
+        std::string outgoing_currency = sale.get_product_first_part();
+
+        double incoming = sale.amount_ * sale.price_;
+        std::string incoming_currency = sale.get_product_second_part();
+
+        remove_currency(outgoing_currency, outgoing);
+        insert_currency(incoming_currency, incoming);
+    }
+    if (sale.type_ == OrderBookType::bidsale)
+    {
+        double outgoing = sale.amount_ * sale.price_;
+        std::string outgoing_currency = sale.get_product_second_part();
+
+        double incoming = sale.amount_;
+        std::string incoming_currency = sale.get_product_first_part();
+
+        remove_currency(outgoing_currency, outgoing);
+        insert_currency(incoming_currency, incoming);
+    }
+}
+
 std::string Wallet::to_string() const
 {
     std::string s = "Wallet contents: \n";

@@ -24,6 +24,11 @@ public:
     /** Returns a string representation of the wallet */
     std::string to_string() const;
 
+    /** Processes a sale
+     * updates the wallet assuming the sale is made by simuser
+     */
+    void process_sale(const OrderBookEntry &sale);
+
 private:
     std::map<std::string, double> wallet_;
 };
